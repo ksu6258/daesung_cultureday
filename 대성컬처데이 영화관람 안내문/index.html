@@ -1,0 +1,1757 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>대성 컬처데이 1회차 · 디스클로저 데이</title>
+
+<!-- ============ TRENDY CDNs ============ -->
+<!-- Tailwind Play CDN (preflight off to keep brand styles intact) -->
+<script>
+  window.tailwind = window.tailwind || {};
+  window.tailwind.config = {
+    corePlugins: { preflight: false },
+    theme: {
+      extend: {
+        colors: {
+          navy: "#1a2c5a",
+          "navy-deep": "#0f1a3a",
+          cream: "#f6efe3",
+          paper: "#fbf6ec",
+          ink: "#1a2c5a",
+          brand: { pink: "#e85a8b", gold: "#f0c14a", blue: "#5b8ed6" },
+        },
+        fontFamily: {
+          display: ['Black Han Sans', "Noto Sans KR", "sans-serif"],
+          mono: ['Space Grotesk', "monospace"],
+          serif: ['Nanum Myeongjo', "serif"],
+        },
+        animation: {
+          "aurora": "aurora 12s ease infinite",
+          "float": "float 6s ease-in-out infinite",
+        },
+        keyframes: {
+          aurora: {
+            "0%,100%": { "background-position": "0% 50%" },
+            "50%": { "background-position": "100% 50%" },
+          },
+          float: {
+            "0%,100%": { transform: "translateY(0px)" },
+            "50%":     { transform: "translateY(-8px)" },
+          },
+        },
+      },
+    },
+  };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    /* default = blue x white palette (poster) */
+    --navy: #0a2c6e;
+    --navy-2: #1648a8;
+    --navy-deep: #051a48;
+    --cream: #eaf2ff;
+    --cream-2: #d5e4fa;
+    --paper: #ffffff;
+    --ink: #0a2c6e;
+    --muted: #5b6c8c;
+    --pink: #2196f3;
+    --pink-soft: #cfe6ff;
+    --red: #2575d9;
+    --blue: #4ea5ff;
+    --gold: #6fc3ff;
+    --line: #cfdcef;
+
+    /* title typography */
+    --display: "Black Han Sans";
+    --display-en: "Bebas Neue";
+    --display-tracking: -0.01em;
+    --display-line: 0.95;
+  }
+
+  /* === MOOD PALETTES === */
+  body[data-palette="cinema-noir"] {
+    --navy: #0d0d10;
+    --navy-2: #1a1a1f;
+    --navy-deep: #050507;
+    --cream: #f5ecd8;
+    --cream-2: #ddcfb0;
+    --paper: #fbf3e0;
+    --ink: #14110b;
+    --muted: #7a6a48;
+    --pink: #c8392e;
+    --gold: #d4a942;
+    --line: #c9b58e;
+  }
+  body[data-palette="disclosure"] {
+    --navy: #0f1638;
+    --navy-2: #1a2358;
+    --navy-deep: #050828;
+    --cream: #dde2ef;
+    --cream-2: #c5cce0;
+    --paper: #e9edf6;
+    --ink: #0f1638;
+    --muted: #54607e;
+    --pink: #5ddfd0;
+    --gold: #f4b340;
+    --line: #b7c0d6;
+  }
+  body[data-palette="morning"] {
+    --navy: #1a1a1a;
+    --navy-2: #2a2a2a;
+    --navy-deep: #0a0a0a;
+    --cream: #f1ead7;
+    --cream-2: #e0d4b8;
+    --paper: #f9f4e2;
+    --ink: #1a1a1a;
+    --muted: #7a6e58;
+    --pink: #b8392b;
+    --gold: #b48427;
+    --line: #d3c5a0;
+  }
+
+  /* === TITLE STYLES === */
+  body[data-title="cinema"] {
+    --display: "Nanum Myeongjo";
+    --display-en: "Bebas Neue";
+    --display-tracking: -0.02em;
+    --display-line: 1.0;
+  }
+  body[data-title="cinema"] .hero-text h1,
+  body[data-title="cinema"] .sec-title,
+  body[data-title="cinema"] .brand-title,
+  body[data-title="cinema"] .event-left h3 { font-weight: 800; }
+
+  body[data-title="friendly"] {
+    --display: "Gowun Dodum";
+    --display-en: "Gowun Dodum";
+    --display-tracking: 0em;
+    --display-line: 1.1;
+  }
+  body[data-title="friendly"] .hero-text h1 { font-size: 64px; letter-spacing: 0; }
+  body[data-title="friendly"] .brand-title { font-size: 46px; letter-spacing: 0; }
+  body[data-title="friendly"] .sec-title { letter-spacing: 0; }
+
+  /* === HERO MODES === */
+  body[data-hero="poster"] .hero-video,
+  body[data-hero="poster"] .hero-tag,
+  body[data-hero="poster"] .hero-mute { display: none; }
+  body[data-hero="poster"] .hero {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-2) 100%);
+  }
+  body[data-hero="poster"] .stars { opacity: 0.7 !important; }
+  body[data-hero="poster"] .hero-veil { display: none; }
+  body[data-hero="poster"] .hero-scan { opacity: 0.35; }
+
+  body[data-hero="noir"] .hero-video iframe {
+    filter: saturate(0.4) brightness(0.32) contrast(1.15);
+  }
+  body[data-hero="noir"] .hero-veil {
+    background:
+      radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.8) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.95) 100%);
+  }
+  body[data-hero="noir"] .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='0.7'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    pointer-events: none;
+    border-radius: 28px;
+    z-index: 1;
+  }
+  body[data-hero="noir"] .hero-tag .rec { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(33,150,243,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(78,165,255,0.12) 0%, transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, #eaf2ff 60%, #d8e6fb 100%);
+    background-attachment: fixed;
+    color: var(--ink); font-family: "Noto Sans KR", sans-serif;
+  }
+  body { -webkit-font-smoothing: antialiased; }
+  .display { font-family: var(--display), "Noto Sans KR", sans-serif; font-weight: 400; letter-spacing: -0.01em; }
+  .script { font-family: "Gowun Dodum", "Noto Sans KR", cursive; }
+  .mono { font-family: "Space Grotesk", monospace; letter-spacing: 0.02em; }
+  .num { font-family: "Bebas Neue", "Noto Sans KR", sans-serif; letter-spacing: 0.02em; }
+
+  /* ------------ shell ------------ */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 28px 96px; }
+
+  /* ------------ topbar ------------ */
+  .topbar { text-align: center; padding: 28px 0 10px; }
+  .ribbon {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 18px 56px;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    position: relative;
+    font-weight: 500;
+  }
+  .ribbon::before, .ribbon::after {
+    content: "";
+    position: absolute; top: 0; bottom: 0;
+    width: 22px;
+    background: var(--cream);
+    clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  }
+  .ribbon::before { left: 0; transform: scaleX(-1); }
+  .ribbon::after { right: 0; }
+
+  .brand-title { font-size: 112px; margin: 8px 0 6px; color: var(--navy); line-height: 0.95;}
+  .brand-sub { font-family: "Gowun Dodum"; color: var(--pink); font-size: 20px; position: relative; display: inline-block; padding: 0 8px;}
+  .brand-sub::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 6px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'><path d='M2 5 Q 50 1, 100 4 T 198 3' fill='none' stroke='%23e85a8b' stroke-width='1.2'/></svg>") repeat-x center / 200px 8px;
+  }
+  .crumbs { margin-top: 16px; font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+  .crumbs b { color: var(--navy); font-weight: 700; }
+
+  /* ------------ overview (추진 개요) ------------ */
+  .overview {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 18px;
+  }
+  .ov-card {
+    background: var(--paper);
+    border: 2px solid var(--navy);
+    border-radius: 22px;
+    padding: 42px 26px 22px;
+    position: relative;
+  }
+  .ov-head {
+    position: absolute;
+    top: -30px; left: 22px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 28px 12px 22px;
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--display), "Noto Sans KR", sans-serif;
+    font-size: 40px; letter-spacing: 0.02em;
+    font-weight: 400;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .ov-head .ic {
+    width: 36px; height: 36px;
+    display: grid; place-items: center;
+    color: var(--gold);
+  }
+  .ov-head .ic svg { width: 28px; height: 28px; }
+  .ov-rows { margin-top: 4px; display: grid; gap: 0; }
+  .ov-row {
+    display: grid;
+    grid-template-columns: 36px 90px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .ov-row:last-child { border-bottom: none; }
+  .ov-ic {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--pink-soft, #f7c8d6);
+    color: var(--pink);
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .ov-ic svg { width: 18px; height: 18px; }
+  .ov-k { font-weight: 700; color: var(--navy); font-size: 16px; letter-spacing: 0.02em; padding-top: 8px;}
+  .ov-v { color: var(--ink); font-size: 16px; line-height: 1.6; padding-top: 8px;}
+  .ov-v b { color: var(--pink); font-weight: 700; }
+  .ov-v small { color: var(--muted); font-size: 13px; display: block; margin-top: 4px; }
+  .ov-row-note { font-size: 12px; color: var(--pink); margin-left: 4px;}
+
+  /* schedule */
+  .ov-sched-note {
+    text-align: right;
+    font-size: 18px; color: var(--muted);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .ov-sched-head {
+    display: grid;
+    grid-template-columns: 78px 1.05fr 1.15fr 60px;
+    gap: 10px;
+    align-items: center;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 10px;
+    padding: 13px 14px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px; letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+  .ov-sched-head > div:last-child { text-align: right;}
+  .ov-sched-row {
+    display: grid;
+    grid-template-columns: 78px 1.05fr 1.15fr 60px;
+    gap: 10px;
+    align-items: center;
+    padding: 18px 14px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .ov-sched-row:last-of-type { border-bottom: none; }
+  .ov-sched-row.now {
+    background: linear-gradient(90deg, rgba(232,90,139,0.12), rgba(232,90,139,0) 80%);
+    border-radius: 8px;
+  }
+  .ov-sched-row.now .ov-act { color: var(--pink); font-weight: 700; }
+  .ov-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 6px 14px;
+    border-radius: 7px;
+    font-size: 13px; font-weight: 700;
+    background: var(--pink); color: #fff;
+    width: max-content;
+    letter-spacing: 0.02em;
+  }
+  .ov-num.b { background: var(--blue); }
+  .ov-num.g { background: #4cb87a; }
+  .ov-date { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 0.04em; color: var(--navy); line-height: 1;}
+  .ov-date small { font-family: "Noto Sans KR"; font-size: 13px; color: var(--muted); margin-left: 4px; letter-spacing: 0;}
+  .ov-act {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--navy); font-size: 17px; font-weight: 600;
+  }
+  .ov-act .em { font-size: 22px; }
+  .ov-people { color: var(--ink); font-size: 15px; text-align: right; font-weight: 500;}
+
+  @media (max-width: 900px) {
+    .overview { grid-template-columns: 1fr; }
+  }
+
+  /* ============ TRENDY 2026 LAYER ============ */
+  /* Subtle film grain over the whole page */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.4'/></svg>");
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  .page, .navbar, #tweaks { position: relative; z-index: 2;}
+
+  /* Scroll progress bar */
+  #scrollbar {
+    position: fixed; left: 0; top: 0;
+    height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--pink), var(--gold), var(--pink));
+    background-size: 200% 100%;
+    animation: aurora 6s linear infinite;
+    z-index: 60;
+    transition: width 0.08s linear;
+  }
+  @keyframes aurora {
+    0%,100% { background-position: 0% 50%;}
+    50% { background-position: 100% 50%;}
+  }
+
+  /* Sticky glass nav */
+  .navbar {
+    position: sticky; top: 0;
+    z-index: 40;
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    background: color-mix(in oklab, var(--cream) 78%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
+  }
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display), "Noto Sans KR", sans-serif;
+    color: var(--navy);
+    font-size: 18px;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--pink) 22%, transparent);
+  }
+  .nav-brand .en {
+    font-family: "Space Grotesk"; font-size: 10px; color: var(--muted);
+    letter-spacing: 0.2em; margin-top: 2px;
+  }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; align-items: center;}
+  .nav-link {
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.18s, background 0.18s;
+    font-weight: 500;
+  }
+  .nav-link:hover { color: var(--navy); background: color-mix(in oklab, var(--cream-2) 60%, transparent); }
+  .nav-cta {
+    margin-left: 8px;
+    background: var(--navy);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--pink); transform: translateY(-1px); }
+  @media (max-width: 760px) {
+    .nav-links a:not(.nav-cta) { display: none;}
+  }
+
+  /* Reveal on scroll */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  [data-reveal].in {
+    opacity: 1; transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] { opacity: 1; transform: none; transition: none; }
+    body::before { display: none;}
+  }
+
+  /* Modern lift hover on cards */
+  .info-cell, .crew-card, .ov-card {
+    transition: transform 0.25s cubic-bezier(.16,1,.3,1), box-shadow 0.25s, border-color 0.2s;
+  }
+  .info-cell:hover, .crew-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -22px rgba(26,44,90,0.35);
+    border-color: color-mix(in oklab, var(--navy) 30%, var(--line));
+  }
+
+  /* Lucide icon defaults inside the page */
+  [data-lucide] { stroke-width: 1.8; }
+  .ov-act [data-lucide] {
+    width: 22px; height: 22px;
+    color: var(--pink);
+  }
+  .ov-sched-row:nth-of-type(3) .ov-act [data-lucide] { color: var(--blue); }
+  .ov-sched-row:nth-of-type(4) .ov-act [data-lucide] { color: #4cb87a; }
+
+  /* Quick-stats chip row under overview (NEW) */
+  .quick-chips {
+    margin-top: 18px;
+    display: flex; gap: 10px; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .qchip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12px; color: var(--navy);
+    letter-spacing: 0.04em;
+  }
+  .qchip [data-lucide] { width: 14px; height: 14px; color: var(--pink); }
+  .qchip b { font-weight: 700; }
+
+  /* ------------ hero card ------------ */
+  .hero {
+    margin-top: 24px;
+    background: #0a1430;
+    border-radius: 28px;
+    color: #fff;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px -25px rgba(15,26,58,0.5);
+  }
+  .hero-video {
+    position: absolute; inset: 0;
+    overflow: hidden;
+    border-radius: 28px;
+    pointer-events: none;
+  }
+  .hero-video iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0;
+    filter: saturate(0.85) brightness(0.55);
+  }
+  .hero-veil {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,20,48,0.55) 0%, rgba(10,20,48,0.35) 40%, rgba(10,20,48,0.85) 100%),
+      linear-gradient(90deg, rgba(10,20,48,0.75) 0%, rgba(10,20,48,0.25) 50%, rgba(10,20,48,0.55) 100%);
+    pointer-events: none;
+    border-radius: 28px;
+  }
+  .hero-scan {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    border-radius: 28px;
+  }
+  .hero-tag {
+    position: absolute; top: 20px; right: 24px;
+    z-index: 3;
+    display: flex; align-items: center; gap: 8px;
+    font-family: "Space Grotesk"; font-size: 10px; letter-spacing: 0.28em;
+    color: rgba(255,255,255,0.78);
+    background: rgba(10,20,48,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 12px; border-radius: 999px;
+    backdrop-filter: blur(6px);
+  }
+  .hero-tag .rec { width: 8px; height: 8px; border-radius: 50%; background: #ff4444; box-shadow: 0 0 8px #ff4444; animation: pulse 1.6s infinite; }
+  .hero-mute {
+    position: absolute; bottom: 20px; right: 24px;
+    z-index: 3;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(10,20,48,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    cursor: pointer;
+    display: grid; place-items: center;
+    font-size: 14px;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s;
+  }
+  .hero-mute:hover { background: var(--pink); border-color: var(--pink); }
+  .hero .stars {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 22%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 28% 70%, #fff 50%, transparent 51%),
+      radial-gradient(2px 2px at 47% 18%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 62% 86%, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 78% 32%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 91% 60%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 8% 80%, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 36% 44%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 55% 50%, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 70% 12%, #fff 50%, transparent 51%);
+    opacity: 0.55;
+    animation: tw 6s ease-in-out infinite alternate;
+  }
+  @keyframes tw { from { opacity: 0.4; } to { opacity: 0.75; } }
+
+  .hero .glow {
+    position: absolute;
+    width: 520px; height: 520px;
+    right: -120px; top: -160px;
+    background: radial-gradient(closest-side, rgba(240,193,74,0.18), rgba(240,193,74,0));
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero .glow2 {
+    position: absolute;
+    width: 420px; height: 420px;
+    left: -120px; bottom: -180px;
+    background: radial-gradient(closest-side, rgba(91,142,214,0.22), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .poster {
+    aspect-ratio: 2 / 3;
+    border-radius: 14px;
+    background: #0c1532;
+    border: 1px solid rgba(255,255,255,0.18);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .poster img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .poster .badge {
+    align-self: flex-start;
+    font-family: "Space Grotesk"; font-size: 10px; letter-spacing: 0.18em;
+    color: var(--gold);
+    border: 1px solid rgba(240,193,74,0.6);
+    padding: 4px 8px;
+  }
+  .poster .eye {
+    align-self: center;
+    width: 92px; height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #fff 0%, var(--gold) 30%, transparent 65%);
+    margin-top: 32px;
+    filter: blur(0.4px);
+  }
+  .poster .iris {
+    position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%);
+    width: 24px; height: 24px; border-radius: 50%; background: #0c1532;
+    box-shadow: 0 0 18px 4px rgba(240,193,74,0.7);
+  }
+  .poster .silhouettes {
+    height: 64px;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 60' preserveAspectRatio='none'><path d='M0 60 V40 L18 38 L24 22 L34 24 L40 18 L52 26 L62 14 L72 20 L84 12 L96 18 L108 8 L120 16 L130 10 L142 18 L154 14 L168 22 L180 16 L196 24 L210 18 L220 30 V60 Z' fill='%23000' opacity='0.85'/><path d='M40 60 V46 L52 42 L60 50 L70 38 L82 44 L92 36 L104 42 L116 32 L130 40 L140 36 L152 42 L164 36 L176 44 V60 Z' fill='%23000'/></svg>") bottom center / 100% 100% no-repeat;
+  }
+  .poster .footer {
+    font-family: "Space Grotesk"; font-size: 9px; letter-spacing: 0.32em;
+    color: rgba(255,255,255,0.6); text-align: center;
+  }
+  .poster .footer b { color: #fff; letter-spacing: 0.2em; }
+  .poster .corner {
+    position: absolute; top: 12px; right: 12px;
+    width: 22px; height: 22px;
+    border-top: 1px solid rgba(255,255,255,0.4);
+    border-right: 1px solid rgba(255,255,255,0.4);
+  }
+  .poster .corner.b {
+    top: auto; right: auto; bottom: 12px; left: 12px;
+    border: none; border-bottom: 1px solid rgba(255,255,255,0.4);
+    border-left: 1px solid rgba(255,255,255,0.4);
+  }
+
+  .hero-text .kicker {
+    font-family: "Space Grotesk";
+    font-size: 12px; letter-spacing: 0.32em;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .hero-text h1 {
+    font-family: var(--display), "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 78px; line-height: 0.95;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .hero-text h1 .en {
+    display: block;
+    font-family: "Bebas Neue";
+    font-size: 28px;
+    letter-spacing: 0.36em;
+    color: rgba(255,255,255,0.55);
+    margin-top: 12px;
+    font-weight: 400;
+  }
+  .quote {
+    margin-top: 24px;
+    max-width: 460px;
+    font-size: 16px; line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+    border-left: 2px solid var(--gold);
+    padding: 4px 0 4px 18px;
+  }
+  .meta-row {
+    margin-top: 28px;
+    display: flex; flex-wrap: wrap; gap: 10px 22px;
+    font-family: "Space Grotesk"; font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em;
+  }
+  .meta-row b { color: #fff; font-weight: 500; margin-right: 6px; }
+
+  /* ------------ countdown ------------ */
+  .countdown {
+    margin-top: -24px;
+    margin-left: auto; margin-right: auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 760px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 10px 26px -18px rgba(26,44,90,0.3);
+  }
+  .countdown .label {
+    font-size: 12px; letter-spacing: 0.18em; color: var(--muted);
+    text-transform: uppercase;
+  }
+  .countdown .label b { color: var(--navy); display: block; font-size: 14px; letter-spacing: 0.04em; margin-top: 4px; font-weight: 700;}
+  .cd-cells { display: flex; gap: 8px; }
+  .cd-cell {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 10px;
+    padding: 8px 12px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .cd-cell .v { font-family: "Bebas Neue"; font-size: 30px; line-height: 1; letter-spacing: 0.04em; }
+  .cd-cell .u { font-size: 10px; letter-spacing: 0.18em; opacity: 0.7; margin-top: 2px; }
+
+  /* ------------ section ------------ */
+  section { margin-top: 64px; }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .sec-num {
+    font-family: "Bebas Neue"; font-size: 22px;
+    background: var(--navy); color: #fff;
+    padding: 4px 10px 2px; border-radius: 6px;
+    letter-spacing: 0.08em;
+  }
+  .sec-title {
+    font-family: var(--display), "Noto Sans KR", sans-serif; font-size: 28px; color: var(--navy); font-weight: 400;
+  }
+  .sec-sub { color: var(--muted); font-size: 13px; margin-left: auto; letter-spacing: 0.02em; }
+
+  /* ------------ info grid ------------ */
+  .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .info-cell {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 16px;
+  }
+  .info-cell .lbl { font-size: 11px; letter-spacing: 0.18em; color: var(--muted); }
+  .info-cell .val { margin-top: 8px; font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.3;}
+  .info-cell .val small { font-weight: 400; color: var(--muted); font-size: 12px; display: block; margin-top: 4px; letter-spacing: 0.04em;}
+
+  /* ------------ synopsis ------------ */
+  .syn-wrap {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .syn-wrap::before {
+    content: "“";
+    position: absolute;
+    top: -32px; left: 24px;
+    font-family: var(--display), "Noto Sans KR", sans-serif;
+    font-size: 200px;
+    color: var(--cream-2);
+    line-height: 1;
+  }
+  .syn-q {
+    font-family: "Gowun Dodum"; font-size: 22px; color: var(--pink);
+    text-align: center;
+    margin: 0 0 24px;
+    position: relative;
+  }
+  .syn-body {
+    font-size: 16px; line-height: 1.95; color: var(--navy); margin: 0;
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .syn-body em { font-style: normal; color: var(--pink); font-weight: 700; }
+
+  /* ------------ external link card ------------ */
+  .ext-link {
+    margin-top: 18px;
+    display: flex; align-items: center; gap: 18px;
+    padding: 18px 22px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.25s cubic-bezier(.16,1,.3,1), box-shadow 0.25s, border-color 0.2s, background 0.2s;
+  }
+  .ext-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px -22px rgba(26,44,90,0.45);
+    border-color: var(--navy);
+  }
+  .ext-link .ext-ic {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--navy); color: #fff;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .ext-link .ext-ic svg { width: 22px; height: 22px; }
+  .ext-link .ext-body { flex: 1; min-width: 0; }
+  .ext-link .ext-kicker {
+    font-family: "Space Grotesk"; font-size: 11px; letter-spacing: 0.18em;
+    color: var(--muted); text-transform: uppercase;
+  }
+  .ext-link .ext-title {
+    font-weight: 700; color: var(--navy); font-size: 16px; margin-top: 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ext-link .ext-domain {
+    font-family: "Space Grotesk", monospace; font-size: 12px;
+    color: var(--muted); margin-top: 4px; letter-spacing: 0.02em;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .ext-link .ext-arrow {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--cream-2);
+    display: grid; place-items: center;
+    color: var(--navy);
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s, transform 0.25s;
+  }
+  .ext-link:hover .ext-arrow {
+    background: var(--pink); color: #fff;
+    transform: translate(2px, -2px);
+  }
+
+  /* ------------ apply CTA (bottom) ------------ */
+  .apply-cta {
+    margin-top: 56px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #fff;
+    border-radius: 28px;
+    padding: 44px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .apply-cta::before, .apply-cta::after {
+    content: ""; position: absolute;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .apply-cta::before {
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--pink) 35%, transparent), transparent);
+    top: -160px; left: -120px;
+  }
+  .apply-cta::after {
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--gold) 25%, transparent), transparent);
+    bottom: -160px; right: -120px;
+  }
+  .apply-cta > * { position: relative; z-index: 1; }
+  .apply-cta .a-kicker {
+    font-family: "Space Grotesk"; font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.24em; color: var(--gold);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .apply-cta .a-title {
+    font-family: var(--display), "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .apply-cta .a-sub {
+    color: rgba(255,255,255,0.85);
+    font-size: 22px; line-height: 1.6;
+    margin: 0 auto 28px;
+    max-width: 640px;
+  }
+  .apply-cta .a-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 32px;
+    background: #fff;
+    color: var(--navy);
+    border-radius: 999px;
+    font-weight: 700; font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 18px 40px -16px rgba(0,0,0,0.4);
+    transition: transform 0.25s, background 0.2s, color 0.2s;
+  }
+  .apply-cta .a-btn:hover {
+    transform: translateY(-3px);
+    background: var(--pink);
+    color: #fff;
+  }
+  .apply-cta .a-btn svg { width: 18px; height: 18px; }
+  .apply-cta .a-meta {
+    margin-top: 22px;
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    font-size: 18px; color: #fff;
+    letter-spacing: 0.04em;
+  }
+  .apply-cta .a-meta span {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+  }
+  .apply-cta .a-meta svg { width: 18px; height: 18px; opacity: 0.9;}
+
+  /* ------------ cast ------------ */
+  .cast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .cast-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .cast-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -22px rgba(26,44,90,0.45); }
+  .cast-photo {
+    aspect-ratio: 1 / 1.05;
+    background: var(--cream-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .cast-photo image-slot {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .cast-info { padding: 14px 16px 18px; }
+  .cast-role { font-size: 12px; color: var(--pink); letter-spacing: 0.08em; font-weight: 700; }
+  .cast-name { font-family: var(--display), "Noto Sans KR", sans-serif; font-size: 22px; color: var(--navy); margin: 4px 0 0; font-weight: 400; }
+  .cast-en { font-family: "Space Grotesk"; font-size: 11px; color: var(--muted); letter-spacing: 0.12em; margin-top: 2px; }
+  .cast-note { margin-top: 10px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+  /* ------------ crew ------------ */
+  .crew-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .crew-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .crew-role { font-size: 11px; color: var(--muted); letter-spacing: 0.16em; }
+  .crew-name { font-weight: 700; color: var(--navy); margin-top: 6px; font-size: 16px;}
+  .crew-en { font-family: "Space Grotesk"; font-size: 10px; letter-spacing: 0.12em; color: var(--muted); margin-top: 2px;}
+
+  /* ------------ event ------------ */
+  .event-card {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 24px;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 36px;
+    align-items: stretch;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-card::after {
+    content: "";
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.15);
+    right: -80px; bottom: -100px;
+  }
+  .event-stamp {
+    position: absolute; top: 24px; right: 32px;
+    width: 96px; height: 96px;
+    border: 2px solid var(--gold); color: var(--gold);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    transform: rotate(-12deg);
+    font-family: var(--display), "Noto Sans KR", sans-serif; font-size: 18px; text-align: center;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+  .event-stamp span { display: block; font-size: 9px; letter-spacing: 0.18em; opacity: 0.8; margin-bottom: 2px;}
+
+  .event-left h3 {
+    font-family: var(--display), "Noto Sans KR", sans-serif; font-weight: 400; font-size: 32px; margin: 0 0 8px;
+  }
+  .event-left .pill {
+    display: inline-block; background: var(--pink); color: #fff;
+    padding: 6px 14px; border-radius: 999px; font-size: 12px; letter-spacing: 0.08em;
+    margin-bottom: 14px; font-weight: 500;
+  }
+  .event-rows { margin-top: 24px; display: grid; gap: 14px; }
+  .event-row { display: grid; grid-template-columns: 80px 1fr; align-items: baseline; }
+  .event-row .k { font-family: "Space Grotesk"; font-size: 11px; letter-spacing: 0.18em; color: var(--gold); }
+  .event-row .v { font-size: 15px; color: #fff; line-height: 1.5; }
+  .event-row .v small { color: rgba(255,255,255,0.6); display: block; margin-top: 4px; font-size: 12px;}
+
+  .ticket {
+    background: var(--paper);
+    color: var(--navy);
+    border-radius: 16px;
+    padding: 22px;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .ticket::before, .ticket::after {
+    content: ""; position: absolute; width: 22px; height: 22px;
+    background: var(--navy);
+    border-radius: 50%;
+    left: -11px;
+  }
+  .ticket::before { top: 30%; }
+  .ticket::after { top: 70%; }
+  .ticket .t-label { font-family: "Space Grotesk"; font-size: 10px; letter-spacing: 0.24em; color: var(--muted); }
+  .ticket .t-title { font-family: var(--display), "Noto Sans KR", sans-serif; font-size: 22px; margin: 6px 0 14px; font-weight: 400; line-height: 1.15;}
+  .ticket .t-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+  .ticket .t-row:last-of-type { border-bottom: none; }
+  .ticket .t-row .lbl { color: var(--muted); letter-spacing: 0.06em; }
+  .ticket .t-row .val { font-weight: 700; }
+  .ticket .t-no { margin-top: 14px; font-family: "Space Grotesk"; font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-align: right; }
+
+  /* ------------ cta ------------ */
+  .cta-bar {
+    margin-top: 40px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 14px 18px 14px 26px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 14px;
+  }
+  .cta-bar .left { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--muted);}
+  .cta-bar .left b { color: var(--navy); font-size: 16px;}
+  .cta-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pink); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1;} 50% { transform: scale(1.4); opacity: 0.5;} }
+  .btn {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-family: "Noto Sans KR"; font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn:hover { background: var(--pink); transform: translateY(-2px); }
+  .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--navy);}
+  .btn.ghost:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ------------ footer ------------ */
+  .foot {
+    margin-top: 56px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .foot .heart { color: var(--pink); }
+  .foot .script { font-family: "Gowun Dodum"; color: var(--navy); font-size: 18px; margin-bottom: 6px;}
+  .foot .script .wave { position: relative; display: inline-block; padding: 0 8px;}
+  .foot .script .wave::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 6px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'><path d='M2 5 Q 50 1, 100 4 T 198 3' fill='none' stroke='%23e85a8b' stroke-width='1.2'/></svg>") repeat-x center / 200px 8px;
+  }
+
+  /* ------------ modal ------------ */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(15,26,58,0.5);
+    backdrop-filter: blur(4px);
+    display: grid; place-items: center;
+    z-index: 50;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: var(--paper);
+    border-radius: 22px;
+    max-width: 480px; width: 100%;
+    padding: 32px;
+    transform: scale(0.96);
+    transition: transform 0.25s;
+  }
+  .modal-backdrop.open .modal { transform: scale(1); }
+  .modal h4 { font-family: var(--display), "Noto Sans KR", sans-serif; font-weight: 400; font-size: 24px; color: var(--navy); margin: 0 0 6px; }
+  .modal p { color: var(--muted); line-height: 1.6; margin: 0 0 18px;}
+  .modal label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.06em; }
+  .modal input {
+    width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line);
+    background: #fff; font-family: inherit; font-size: 14px; color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .modal input:focus { outline: none; border-color: var(--navy); }
+  .modal .actions { display: flex; gap: 10px; margin-top: 6px; }
+  .modal .check { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px;}
+  .modal .check label { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--navy); cursor: pointer; }
+
+  .success {
+    text-align: center;
+  }
+  .success .big-no { font-family: "Bebas Neue"; font-size: 64px; color: var(--pink); letter-spacing: 0.04em;}
+  .success .big-no small { display: block; font-family: "Noto Sans KR"; font-size: 11px; letter-spacing: 0.2em; color: var(--muted);}
+
+  /* ------------ marquee ------------ */
+  .marquee {
+    overflow: hidden;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 999px;
+    padding: 10px 0;
+    margin-top: 32px;
+    font-family: "Space Grotesk"; font-size: 12px; letter-spacing: 0.36em;
+  }
+  .marquee-inner {
+    display: flex; gap: 48px;
+    animation: marq 28s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-inner span { padding: 0 24px; border-right: 1px solid rgba(255,255,255,0.15); }
+  @keyframes marq { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+  @media (max-width: 760px) {
+    .hero { padding: 24px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+    .hero-text h1 { font-size: 56px; }
+    .countdown { flex-direction: column; gap: 14px; }
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .cast-grid { grid-template-columns: 1fr 1fr; }
+    .crew-grid { grid-template-columns: 1fr 1fr; }
+    .event-card { grid-template-columns: 1fr; }
+    .event-stamp { right: 16px; top: 16px; width: 72px; height: 72px; font-size: 14px;}
+    .brand-title { font-size: 84px;}
+  }
+
+  /* ============ TWEAKS PANEL ============ */
+  #tweaks {
+    position: fixed;
+    right: 20px; bottom: 20px;
+    width: 320px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px -20px rgba(15,26,58,0.45);
+    padding: 18px;
+    z-index: 100;
+    font-family: "Noto Sans KR", sans-serif;
+    display: none;
+    user-select: none;
+  }
+  #tweaks.open { display: block; animation: slideUp 0.25s ease; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+  #tweaks .tw-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 12px; border-bottom: 1px solid var(--line);
+    cursor: move;
+  }
+  #tweaks .tw-title { font-family: var(--display), "Noto Sans KR", sans-serif; font-size: 18px; color: var(--navy); font-weight: 400; }
+  #tweaks .tw-close {
+    background: transparent; border: none; cursor: pointer;
+    width: 28px; height: 28px; border-radius: 50%;
+    color: var(--muted); font-size: 16px;
+    display: grid; place-items: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  #tweaks .tw-close:hover { background: var(--cream-2); color: var(--navy); }
+  #tweaks .tw-section { margin-top: 14px; }
+  #tweaks .tw-label {
+    font-family: "Space Grotesk"; font-size: 10px; letter-spacing: 0.2em;
+    color: var(--muted); margin-bottom: 8px; text-transform: uppercase;
+  }
+  #tweaks .tw-options { display: grid; gap: 6px; }
+  #tweaks .tw-opt {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 10px;
+    transition: background 0.15s, border-color 0.15s;
+    font-family: inherit; font-size: 13px; color: var(--ink);
+    text-align: left; width: 100%;
+  }
+  #tweaks .tw-opt:hover { background: var(--cream-2); }
+  #tweaks .tw-opt.active { border-color: var(--navy); background: var(--cream-2); }
+  #tweaks .tw-opt.active::after {
+    content: "✓"; margin-left: auto; color: var(--navy); font-weight: 700;
+  }
+  #tweaks .tw-swatch {
+    display: flex; gap: 3px;
+    width: 48px; height: 18px;
+    border-radius: 4px; overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+  }
+  #tweaks .tw-swatch span { flex: 1; }
+  #tweaks .tw-opt-name { font-weight: 500; }
+  #tweaks .tw-opt-desc { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; font-weight: 400; letter-spacing: 0.02em;}
+  #tweaks .tw-opt-text { flex: 1; min-width: 0; }
+  #tweaks .tw-footer {
+    margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line);
+    font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body style="background-color: rgb(248, 248, 239)">
+  <!-- Scroll progress -->
+  <div id="scrollbar" aria-hidden="true"></div>
+
+  <!-- Sticky glass nav -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#top" class="nav-brand">
+        <span class="nav-dot"></span>
+        <div>
+          대성 컬처데이
+          <div class="en">CULTURE DAY · 01</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#overview" class="nav-link">개요</a>
+        <a href="#movie" class="nav-link">영화</a>
+        <a href="#synopsis" class="nav-link">시놉시스</a>
+        <a href="#apply" class="nav-cta">
+          <i data-lucide="ticket"></i>신청하기
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page" id="top">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="ribbon" style="color: rgb(42, 55, 40); background-color: rgb(227, 232, 248); font-size: 25px; height: 70px; padding: 18px 56px; width: 485px">2026년 기업문화 활성화 프로그램</div>
+      <h1 class="brand-title display" style="font-size: 100px; color: rgb(24, 44, 222)">대성 컬처데이</h1>
+      <div class="brand-sub" style="font-size: 25px; text-align: center">문화로 채우는 하루, 함께하는 행복!</div>
+      <div class="crumbs">
+</div>
+    </header>
+
+    <!-- OVERVIEW (추진 개요 · 운영 계획) -->
+    <section class="overview" id="overview" data-reveal aria-label="대성 컬처데이 개요">
+      <div class="ov-card" style="background-color: rgb(250, 253, 253)">
+        <div class="ov-head" style="font-weight: 100">
+          <span class="ic" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>
+          </span>
+          추진 개요
+        </div>
+
+        <div class="ov-rows">
+          <div class="ov-row">
+            <div class="ov-ic" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l2-2v6l-2-2zM5 9l11-4v14L5 15z"/></svg>
+            </div>
+            <div class="ov-k">프로그램명</div>
+            <div class="ov-v">대성 컬처데이</div>
+          </div>
+
+          <div class="ov-row">
+            <div class="ov-ic" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+            </div>
+            <div class="ov-k">추진 목적</div>
+            <div class="ov-v">문화 향유를 통한 업무 스트레스 해소 및 일터 행복감 증진</div>
+          </div>
+
+          <div class="ov-row">
+            <div class="ov-ic" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1"/><path d="M21 3v6h-6"/></svg>
+            </div>
+            <div class="ov-k">운영 주기</div>
+            <div class="ov-v">분기별 1회 <b>(총 3회)</b></div>
+          </div>
+
+          <div class="ov-row">
+            <div class="ov-ic" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/><path d="M8 14l2 2 4-4"/></svg>
+            </div>
+            <div class="ov-k">운영 일자</div>
+            <div class="ov-v">
+              해당 월 <b>둘째 주 수요일 ‘문화의 날’</b> 퇴근 후 시행을 원칙으로 함
+              <small style="font-size: 15px; color: rgb(85, 89, 107)">※ 사정에 따라 변경될 수 있음</small>
+            </div>
+          </div>
+
+          <div class="ov-row">
+            <div class="ov-ic" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="ov-k">참여 대상</div>
+            <div class="ov-v">전 임직원 중 신청자 <b>30명</b> <span class="ov-row-note" style="font-size: 15px">(초과 시 추첨)</span></div>
+          </div>
+
+          <div class="ov-row">
+            <div class="ov-ic" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 8.5l3 3.5h-3M15 8.5l-3 3.5h3M9 14.5h6"/></svg>
+            </div>
+            <div class="ov-k">경비 지원</div>
+            <div class="ov-v" style="font-size: 16px">관람료 및 저녁 식비 지원
+              <div style="font-size: 15px">&nbsp;※ HR팀에서 티켓 일괄 예매 후 현장 배부</div>
+              <div style="font-size: 15px"> ※ 저녁 식대(제수당으로 지급)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ov-card" style="background-color: rgb(250, 253, 253)">
+        <div class="ov-head" style="font-weight: 100">
+          <span class="ic" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+          </span>
+          운영 계획
+        </div>
+        <div class="ov-sched-note" style="color: rgb(23, 54, 235)">※ 일정 및 활동 계획은 사정에 따라 변경될 수 있음</div>
+        <div class="ov-sched-head" style="background-color: rgb(120, 122, 242)">
+          <div>회차</div>
+          <div>운영일</div>
+          <div>문화 활동</div>
+          <div>인원</div>
+        </div>
+
+        <div class="ov-sched-row now" title="현재 안내 중인 회차">
+          <div><span class="ov-num">1회차</span></div>
+          <div class="ov-date">06. 10.<small>(수)</small></div>
+          <div class="ov-act"><span class="em"><i data-lucide="film"></i></span>영화 관람</div>
+          <div class="ov-people" style="font-weight: 700">30명</div>
+        </div>
+        <div class="ov-sched-row">
+          <div><span class="ov-num b">2회차</span></div>
+          <div class="ov-date">09. 09.<small>(수)</small></div>
+          <div class="ov-act"><span class="em"><i data-lucide="drama"></i></span>연극 관람</div>
+          <div class="ov-people" style="font-weight: 700">30명</div>
+        </div>
+        <div class="ov-sched-row">
+          <div><span class="ov-num g">3회차</span></div>
+          <div class="ov-date">12. 09.<small>(수)</small></div>
+          <div class="ov-act">🏀
+프로 농구</div>
+          <div class="ov-people" style="font-weight: 700">30명</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="info" data-reveal>
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <span class="sec-title">영화 정보</span>
+        <span class="sec-sub">기본 정보 한눈에 보기</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="lbl">RELEASE</div>
+          <div class="val">2026. 06. 10.<small>국내 전 세계 최초 개봉 (수)</small></div>
+        </div>
+        <div class="info-cell">
+          <div class="lbl">GENRE</div>
+          <div class="val">SF · 미스터리<small>스릴러 · 12세 관람가 (예정)</small></div>
+        </div>
+        <div class="info-cell">
+          <div class="lbl">RUNTIME</div>
+          <div class="val">약 145분</div>
+        </div>
+        <div class="info-cell">
+          <div class="lbl">COUNTRY</div>
+          <div class="val">미국<small>USA · 영어 (한국어 자막)</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="hero" id="movie" data-reveal aria-label="영화 소개">
+      <div class="hero-video" aria-hidden="true">
+        <iframe id="heroTrailer"
+          src="https://www.youtube-nocookie.com/embed/UFe6NRgoXCM?autoplay=1&mute=1&loop=1&playlist=UFe6NRgoXCM&controls=0&modestbranding=1&rel=0&playsinline=1&showinfo=0&iv_load_policy=3&disablekb=1&fs=0&enablejsapi=1"
+          title="디스클로저 데이 공식 티저 (배경 재생)"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <div class="hero-veil"></div>
+      <div class="hero-scan"></div>
+      <div class="hero-tag"><span class="rec"></span>OFFICIAL TEASER · PLAYING</div>
+      <button class="hero-mute" id="muteBtn" aria-label="음소거 토글" title="음소거 토글">🔇</button>
+      <div class="stars" style="opacity:0.15;"></div>
+      <div class="glow"></div>
+      <div class="glow2"></div>
+      <div class="hero-grid">
+        <!-- Movie poster -->
+        <div class="poster" aria-label="디스클로저 데이 포스터">
+          <img src="영화포스터.webp" alt="디스클로저 데이 영화 포스터" />
+        </div>
+
+        <div class="hero-text">
+          <div class="kicker">★ 1회차 · 영화 관람 · 2026.06.10 (수)</div>
+          <h1>
+            디스클로저<br/>데이
+            <span class="en">DISCLOSURE&nbsp;DAY</span>
+          </h1>
+          <p class="quote">
+            “우리가 우주에 혼자가 아니라는 걸 알게 된다면,<br/>그게 당신을 두렵게 할까요?”
+          </p>
+          <div class="meta-row">
+            <span><b>장르</b> SF · 미스터리 · 스릴러</span>
+            <span><b>감독</b> 스티븐 스필버그</span>
+            <span><b>개봉</b> 2026.06.10</span>
+            <span><b>배급</b> 유니버설 픽쳐스</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown -->
+    <div class="countdown">
+      <div class="label">D-DAY 카운트다운<b>2026. 06. 10. (수) 19:00</b></div>
+      <div class="cd-cells" id="cd">
+        <div class="cd-cell"><div class="v" data-k="d">--</div><div class="u">DAYS</div></div>
+        <div class="cd-cell"><div class="v" data-k="h">--</div><div class="u">HRS</div></div>
+        <div class="cd-cell"><div class="v" data-k="m">--</div><div class="u">MIN</div></div>
+        <div class="cd-cell"><div class="v" data-k="s">--</div><div class="u">SEC</div></div>
+      </div>
+    </div>
+
+    <!-- SYNOPSIS -->
+    <section id="synopsis" data-reveal>
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <span class="sec-title">시놉시스</span>
+        <span class="sec-sub">스포일러 없이, 영화관에서 만나요</span>
+      </div>
+      <div class="syn-wrap" style="font-size: 18px">
+        <p class="syn-q" style="font-size: 20px; font-weight: 700">우리만 존재하는 게 아니라는 걸, 만약 누군가 증명해 보인다면.</p>
+        <p class="syn-body" style="font-size: 18px">
+          평범한 아침, 아침 뉴스를 준비하던 앵커 <em>마가렛 페어차일드</em>가
+          알 수 없는 힘에 의해 정체불명의 말을 내뱉는 장면이 전 세계로 생중계된다.
+          한순간에 혼돈에 빠진 세상 — 전 인류가 갈망하는 진실을 밝히려는 <em>다니엘</em>,
+          비밀을 감추려는 자들, 그리고 두 사람을 추격하는 거대한 세력까지.
+          <br/><br/>
+          거장 스티븐 스필버그가 3년 만에 돌아오는 SF 신작.
+          〈미지와의 조우〉의 경이와 〈우주 전쟁〉의 공포 그 사이 어딘가,
+          공개될 단 하나의 진실 — <em>모든 것이, 곧, 공개됩니다.</em>
+        </p>
+      </div>
+
+      <a class="ext-link" href="https://namu.wiki/w/%EB%94%94%EC%8A%A4%ED%81%B4%EB%A1%9C%EC%A0%80%20%EB%8D%B0%EC%9D%B4" target="_blank" rel="noopener noreferrer" style="background-color: rgb(188, 228, 235)">
+        <div class="ext-ic" aria-hidden="true">
+          <i data-lucide="book-open"></i>
+        </div>
+        <div class="ext-body">
+          <div class="ext-kicker" style="font-size: 20px">더 알아보기 · MORE INFO</div>
+          <div class="ext-title" style="font-size: 26px">디스클로저 데이 — 나무위키 바로가기</div>
+          <div class="ext-domain">namu.wiki/w/디스클로저 데이</div>
+        </div>
+        <div class="ext-arrow" aria-hidden="true">
+          <i data-lucide="arrow-up-right"></i>
+        </div>
+      </a>
+    </section>
+
+    <!-- APPLY CTA (survey form link) -->
+    <section class="apply-cta" id="apply">
+      <div class="a-kicker">★ 1회차 · 영화관람 신청</div>
+      <h2 class="a-title">함께 가실 분, 지금 신청하세요</h2>
+      <p class="a-sub">
+        장소는 중구 동성로 인근 영화관이며, 추후 공지 예정
+      </p>
+      <a class="a-btn" href="https://naver.me/5K6qd420" target="_blank" rel="noopener noreferrer">
+        <i data-lucide="clipboard-check"></i>
+        신청 폼 바로가기
+        <i data-lucide="arrow-up-right"></i>
+      </a>
+      <div class="a-meta">
+        <span><i data-lucide="calendar"></i>신청 기간 : 05.28(목) ~ 06.03(수)</span>
+        <span><i data-lucide="users"></i>30명 모집 · 초과 시 추첨</span>
+        <span><i data-lucide="external-link"></i>naver.me/5K6qd420</span>
+      </div>
+    </section>
+
+    <!-- Footer note -->
+    <div class="foot">
+      <div class="script">
+        <span class="wave" style="font-size: 25px">문화가 있는 날, 우리 함께 즐겨요!</span>
+      </div>
+      <div style="font-size: 20px">문의 : HR팀 김상욱 차장(☎ 209)</div>
+    </div>
+  </div>
+
+  <!-- Modal removed (replaced by external survey form link) -->
+
+<script>
+(function(){
+  // ------- countdown -------
+  const target = new Date("2026-06-10T19:00:00+09:00").getTime();
+  const cells = document.querySelectorAll("#cd .v");
+  function tick(){
+    const now = Date.now();
+    let diff = Math.max(0, target - now);
+    const d = Math.floor(diff / 86400000); diff -= d*86400000;
+    const h = Math.floor(diff / 3600000); diff -= h*3600000;
+    const m = Math.floor(diff / 60000); diff -= m*60000;
+    const s = Math.floor(diff / 1000);
+    const map = {d, h, m, s};
+    cells.forEach(c => {
+      const k = c.dataset.k;
+      c.textContent = String(map[k]).padStart(2, "0");
+    });
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ------- hero trailer sizing + mute toggle (keep) -------
+  function sizeHero() {
+    const wrap = document.querySelector(".hero-video");
+    const iframe = document.getElementById("heroTrailer");
+    if (!wrap || !iframe) return;
+    const w = wrap.clientWidth;
+    const h = wrap.clientHeight;
+    const aspect = 16/9;
+    // cover behavior + 10% overscan so YouTube chrome (if any) stays clipped
+    if (w/h > aspect) {
+      const W = w * 1.1;
+      iframe.style.width = W + "px";
+      iframe.style.height = (W / aspect) + "px";
+    } else {
+      const H = h * 1.25;
+      iframe.style.height = H + "px";
+      iframe.style.width = (H * aspect) + "px";
+    }
+  }
+  window.__sizeHero = sizeHero;
+  sizeHero();
+  window.addEventListener("resize", sizeHero);
+  // re-size once iframe has loaded too
+  document.getElementById("heroTrailer").addEventListener("load", sizeHero);
+
+  let muted = true;
+  const muteBtn = document.getElementById("muteBtn");
+  function postYT(func, args) {
+    const f = document.getElementById("heroTrailer");
+    try {
+      f.contentWindow.postMessage(JSON.stringify({event:"command", func, args: args || []}), "*");
+    } catch(_){}
+  }
+  muteBtn.addEventListener("click", () => {
+    muted = !muted;
+    if (muted) {
+      postYT("mute");
+      muteBtn.textContent = "🔇";
+      muteBtn.setAttribute("aria-label", "음소거 해제");
+    } else {
+      postYT("unMute");
+      postYT("setVolume", [60]);
+      muteBtn.textContent = "🔊";
+      muteBtn.setAttribute("aria-label", "음소거");
+    }
+  });
+})();
+</script>
+  <!-- ============ TWEAKS PANEL ============ -->
+  <div id="tweaks" role="dialog" aria-label="Tweaks">
+    <div class="tw-head" id="twHead">
+      <div class="tw-title">Tweaks</div>
+      <button class="tw-close" id="twClose" aria-label="닫기">✕</button>
+    </div>
+
+    <div class="tw-section">
+      <div class="tw-label">무드 팔레트 · MOOD</div>
+      <div class="tw-options" data-key="palette">
+        <button class="tw-opt" data-val="culture">
+          <div class="tw-swatch"><span style="background:#1a2c5a"></span><span style="background:#f6efe3"></span><span style="background:#e85a8b"></span></div>
+          <div class="tw-opt-text"><span class="tw-opt-name">컬처데이</span><span class="tw-opt-desc">네이비 · 크림 · 핑크 (오리지널)</span></div>
+        </button>
+        <button class="tw-opt" data-val="cinema-noir">
+          <div class="tw-swatch"><span style="background:#0d0d10"></span><span style="background:#d4a942"></span><span style="background:#c8392e"></span></div>
+          <div class="tw-opt-text"><span class="tw-opt-name">시네마 누아르</span><span class="tw-opt-desc">잉크 · 골드 · 크림슨</span></div>
+        </button>
+        <button class="tw-opt" data-val="disclosure">
+          <div class="tw-swatch"><span style="background:#0f1638"></span><span style="background:#5ddfd0"></span><span style="background:#f4b340"></span></div>
+          <div class="tw-opt-text"><span class="tw-opt-name">디스클로저</span><span class="tw-opt-desc">미드나잇 · 시안 · 앰버 (SF)</span></div>
+        </button>
+        <button class="tw-opt" data-val="morning">
+          <div class="tw-swatch"><span style="background:#f1ead7"></span><span style="background:#1a1a1a"></span><span style="background:#b8392b"></span></div>
+          <div class="tw-opt-text"><span class="tw-opt-name">모닝쇼</span><span class="tw-opt-desc">페이퍼 · 잉크 · 크림슨 (뉴스)</span></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="tw-section">
+      <div class="tw-label">타이틀 톤 · TYPE</div>
+      <div class="tw-options" data-key="title">
+        <button class="tw-opt" data-val="bold">
+          <div class="tw-opt-text"><span class="tw-opt-name" style="font-family:'Black Han Sans'; font-size:18px;">굵직 임팩트</span><span class="tw-opt-desc">Black Han Sans · 포스터 강한 톤</span></div>
+        </button>
+        <button class="tw-opt" data-val="cinema">
+          <div class="tw-opt-text"><span class="tw-opt-name" style="font-family:'Nanum Myeongjo'; font-weight:800; font-size:18px;">영화 타이틀</span><span class="tw-opt-desc">Nanum Myeongjo · 세리프 시네마</span></div>
+        </button>
+        <button class="tw-opt" data-val="friendly">
+          <div class="tw-opt-text"><span class="tw-opt-name" style="font-family:'Gowun Dodum'; font-size:18px;">손글씨 친근</span><span class="tw-opt-desc">Gowun Dodum · 사내 공지 느낌</span></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="tw-section">
+      <div class="tw-label">히어로 모드 · HERO</div>
+      <div class="tw-options" data-key="hero">
+        <button class="tw-opt" data-val="trailer">
+          <div class="tw-opt-text"><span class="tw-opt-name">영상 배경</span><span class="tw-opt-desc">예고편 루프 (현재)</span></div>
+        </button>
+        <button class="tw-opt" data-val="poster">
+          <div class="tw-opt-text"><span class="tw-opt-name">일러스트 포스터</span><span class="tw-opt-desc">정적 · 별 + 글로우만</span></div>
+        </button>
+        <button class="tw-opt" data-val="noir">
+          <div class="tw-opt-text"><span class="tw-opt-name">풀 시네마</span><span class="tw-opt-desc">영상 + 비네팅 + 그레인</span></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="tw-footer">변경 사항은 자동 저장됩니다.</div>
+  </div>
+
+<script>
+(function(){
+  // TWEAK DEFAULTS — host parses & rewrites this JSON block on persist
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "palette": "culture",
+    "title": "bold",
+    "hero": "trailer"
+  }/*EDITMODE-END*/;
+
+  const state = Object.assign({}, TWEAK_DEFAULTS);
+
+  function apply() {
+    document.body.setAttribute("data-palette", state.palette);
+    document.body.setAttribute("data-title", state.title);
+    document.body.setAttribute("data-hero", state.hero);
+    // sync ui active states
+    document.querySelectorAll("#tweaks .tw-options").forEach(group => {
+      const key = group.dataset.key;
+      group.querySelectorAll(".tw-opt").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.val === state[key]);
+      });
+    });
+  }
+  apply();
+
+  // ---- protocol: register listener FIRST ----
+  const panel = document.getElementById("tweaks");
+  window.addEventListener("message", (e) => {
+    const t = e.data && e.data.type;
+    if (t === "__activate_edit_mode") panel.classList.add("open");
+    else if (t === "__deactivate_edit_mode") panel.classList.remove("open");
+  });
+  // now announce availability
+  try { window.parent.postMessage({type: "__edit_mode_available"}, "*"); } catch(_){}
+
+  document.getElementById("twClose").addEventListener("click", () => {
+    panel.classList.remove("open");
+    try { window.parent.postMessage({type: "__edit_mode_dismissed"}, "*"); } catch(_){}
+  });
+
+  // option clicks
+  document.querySelectorAll("#tweaks .tw-options").forEach(group => {
+    const key = group.dataset.key;
+    group.querySelectorAll(".tw-opt").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const v = btn.dataset.val;
+        if (state[key] === v) return;
+        state[key] = v;
+        apply();
+        // re-fit hero video in case dimensions change
+        if (typeof window.__sizeHero === "function") window.__sizeHero();
+        try {
+          window.parent.postMessage({type: "__edit_mode_set_keys", edits: {[key]: v}}, "*");
+        } catch(_){}
+      });
+    });
+  });
+
+  // ---- drag-to-move ----
+  const head = document.getElementById("twHead");
+  let drag = null;
+  head.addEventListener("mousedown", (e) => {
+    if (e.target.closest(".tw-close")) return;
+    const r = panel.getBoundingClientRect();
+    drag = { x: e.clientX - r.left, y: e.clientY - r.top };
+    panel.style.right = "auto"; panel.style.bottom = "auto";
+    panel.style.left = r.left + "px"; panel.style.top = r.top + "px";
+    e.preventDefault();
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!drag) return;
+    panel.style.left = Math.max(8, Math.min(window.innerWidth - panel.offsetWidth - 8, e.clientX - drag.x)) + "px";
+    panel.style.top  = Math.max(8, Math.min(window.innerHeight - panel.offsetHeight - 8, e.clientY - drag.y)) + "px";
+  });
+  window.addEventListener("mouseup", () => drag = null);
+})();
+</script>
+
+<script>
+(function(){
+  // ---- scroll progress ----
+  const bar = document.getElementById("scrollbar");
+  function onScroll(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    if (bar) bar.style.width = pct + "%";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  // ---- reveal on scroll ----
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+  const revealEls = document.querySelectorAll("[data-reveal]");
+  revealEls.forEach(el => io.observe(el));
+  // Safety net: any data-reveal still hidden after 1.2s gets revealed
+  // (covers timing issues with heavy iframes / CDN scripts)
+  setTimeout(() => {
+    revealEls.forEach(el => el.classList.add("in"));
+  }, 1200);
+
+  // ---- smooth anchor scroll (with sticky-nav offset) ----
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href").slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      const navH = document.querySelector(".navbar")?.offsetHeight || 0;
+      const y = el.getBoundingClientRect().top + window.scrollY - navH - 12;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  });
+
+  // ---- lucide icons ----
+  function paintIcons(){
+    if (window.lucide && lucide.createIcons) lucide.createIcons();
+  }
+  if (document.readyState === "complete") paintIcons();
+  else window.addEventListener("load", paintIcons);
+  // re-paint after react-y dynamic inserts settle
+  setTimeout(paintIcons, 400);
+})();
+</script>
+
+</body>
+</html>
